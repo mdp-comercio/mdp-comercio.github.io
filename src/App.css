@@ -1,0 +1,47 @@
+/* Font family */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+:root {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Colors */
+:root {
+  --primary: rgba(103, 70, 163, 1);
+  --primary-opacity-80: rgba(103, 40, 163, 0.5);
+}
+
+/* Highlight */
+mark {
+  background-color: var(--primary-opacity-80);
+}
+
+/* Overflow */
+:root {
+  overflow-x: hidden;
+}
+
+/* Table */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+td, th {
+  border-width: 1px;
+  padding: 8px;
+  text-align: left;
+}
+
+tr:hover {background-color: #637aaa23;}
+
+th {
+  background-color: var(--primary);
+  color: white;
+}
