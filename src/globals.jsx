@@ -1,1 +1,1 @@
-export const BACKEND_URL = "https://localhost:8000"
+export const BACKEND_URL = "https://mdp-plataform-c9a777870642.herokuapp.com"
