@@ -1,6 +1,6 @@
 {
-  "name": "mdp-plataform",
   "homepage": "https://mdp-comercio.github.io/mdp-frontend/",
+  "name": "mdp-plataform",
   "private": true,
   "version": "0.0.0",
   "type": "module",
