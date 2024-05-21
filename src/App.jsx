@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
 import './App.css'
 
 import LoginPage from './pages/LoginPage';
@@ -7,7 +7,6 @@ import EffectiPage from './pages/EffectiPage'
 import PncpPage from './pages/PncpPage';
 import ProposalsPage from './pages/ProposalsPage'
 import SettingsPage from './pages/SettingsPage';
-import { Sidebar } from './components/Sidebar'
 import LoginProvider, { LoginContext } from "./services/auth";
 
 // Route requires the user to be logged in
@@ -23,7 +22,7 @@ const ProtectedRoute = ({ children }) => {
 function App() {
 
   return (
-    <Router>
+    <BrowserRouter basename="/mdp-frontend">
       <LoginProvider>
         <div className='flex flex-col xl:flex-row'>
           <Routes>
@@ -78,7 +77,7 @@ function App() {
           </Routes>
         </div>
       </LoginProvider>
-    </Router>
+    </BrowserRouter>
   )
 }
 
