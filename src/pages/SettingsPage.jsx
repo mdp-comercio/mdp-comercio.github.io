@@ -112,9 +112,10 @@ const SettingsPage = () => {
                     </div>  
                 </div>
             </div>
-
-            <ProductDialog open={open} setOpen={setOpen}/>
         </div>
+
+        <ProductDialog open={open} setOpen={setOpen}/>
+
     </>)
 }
 

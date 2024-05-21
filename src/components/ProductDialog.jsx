@@ -1,12 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import { BACKEND_URL } from "../globals";
-import {
-  Button,
-  Dialog,
-  DialogHeader,
-  DialogBody,
-  DialogFooter,
-} from "@material-tailwind/react";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 import { LoginContext } from "../services/auth";
  
 export default function ProductDialog({open, setOpen}) {
@@ -46,11 +44,11 @@ export default function ProductDialog({open, setOpen}) {
     
     return (
         <div>
-            <Dialog open={open} handler={handleOpen} size="md" className="" dismiss={{ancestorScroll: false}}>
+            <Dialog open={open} handler={handleOpen} maxWidth="xl">
 
-                <DialogHeader>Cadastrar produto</DialogHeader>
+                <DialogTitle>Cadastrar produto</DialogTitle>
 
-                <DialogBody >
+                <DialogContent >
                     <div className="max-h-[50vh] px-5 overflow-y-auto">
 
                     <div className="mb-4">
@@ -86,7 +84,7 @@ export default function ProductDialog({open, setOpen}) {
                         />
                     </div>
 
-                    <div className="mb-4">
+                    <div className="">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="descricao">
                             Descrição
                         </label>
@@ -98,21 +96,16 @@ export default function ProductDialog({open, setOpen}) {
                     </div>
 
                     </div>
-                </DialogBody>
+                </DialogContent>
 
-                <DialogFooter>
-                    <Button
-                        variant="text"
-                        color="red"
-                        onClick={handleCancel}
-                        className="mr-1"
-                    >
-                        <span>Cancelar</span>
+                <DialogActions>
+                    <Button variant="contained" color="error" onClick={handleCancel}>
+                        Cancelar
                     </Button>
-                    <Button variant="gradient" color="green" onClick={handleConfirm}>
-                        <span>Confirmar</span>
+                    <Button variant="contained" color="success" onClick={handleConfirm}>
+                        Confirmar
                     </Button>
-                </DialogFooter>
+                </DialogActions>
 
             </Dialog>
         </div>
