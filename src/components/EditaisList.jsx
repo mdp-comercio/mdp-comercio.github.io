@@ -2,7 +2,6 @@ import { useState } from "react";
 import Dropdown from "../components/Dropdown"
 import ProposalDialog from "./ProposalDialog";
 import SmartText from "../components/SmartText";
-import { BACKEND_URL } from "../globals";
 
 const EditaisList = ({editais}) => {
 

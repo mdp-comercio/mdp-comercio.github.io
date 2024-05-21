@@ -22,7 +22,7 @@ const ProtectedRoute = ({ children }) => {
 function App() {
 
   return (
-    <BrowserRouter basename="/mdp-frontend">
+    <Router basename="/mdp-frontend">
       <LoginProvider>
         <div className='flex flex-col xl:flex-row'>
           <Routes>
@@ -77,7 +77,7 @@ function App() {
           </Routes>
         </div>
       </LoginProvider>
-    </BrowserRouter>
+    </Router>
   )
 }
 

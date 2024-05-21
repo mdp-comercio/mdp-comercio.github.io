@@ -1,12 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import { BACKEND_URL } from "../globals";
-import {
-  Button,
-  Dialog,
-  DialogHeader,
-  DialogBody,
-  DialogFooter,
-} from "@material-tailwind/react";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 import { LoginContext } from "../services/auth";
 import Select from 'react-select'
  
@@ -85,11 +83,11 @@ export default function ProposalDialog({edital, setEdital}) {
     
     return (
         <div>
-            <Dialog open={open} handler={handleOpen} size="xl" className="p-5" dismiss={{ancestorScroll: false}}>
+            <Dialog open={open} handler={handleOpen} maxWidth="lg">
 
-                <DialogHeader>Proposta</DialogHeader>
+                <DialogTitle>Proposta</DialogTitle>
 
-                <DialogBody >
+                <DialogContent >
                     {edital && 
                         <div className="max-h-[50vh] overflow-y-auto">
                             <table class="table-auto">
@@ -183,21 +181,12 @@ export default function ProposalDialog({edital, setEdital}) {
                             </table>
                         </div>
                     }
-                </DialogBody>
+                </DialogContent>
 
-                <DialogFooter>
-                <Button
-                    variant="text"
-                    color="red"
-                    onClick={handleCancel}
-                    className="mr-1"
-                >
-                    <span>Cancelar</span>
-                </Button>
-                <Button variant="gradient" color="green" onClick={handleConfirm}>
-                    <span>Confirmar</span>
-                </Button>
-                </DialogFooter>
+                <DialogActions>
+                <Button variant="contained" color="error" onClick={handleCancel}>Cancelar</Button>
+                <Button variant="contained" color="success" onClick={handleConfirm}>Confirmar</Button>
+                </DialogActions>
 
             </Dialog>
         </div>
