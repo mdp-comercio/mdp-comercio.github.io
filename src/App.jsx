@@ -22,7 +22,7 @@ const ProtectedRoute = ({ children }) => {
 function App() {
 
   return (
-    <Router basename="/mdp-frontend">
+    <Router>
       <LoginProvider>
         <div className='flex flex-col xl:flex-row'>
           <Routes>
