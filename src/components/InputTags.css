@@ -1,0 +1,16 @@
+.rti--container {
+    border: none !important;  
+    background-color: transparent !important;  
+    outline: none !important;
+    --rti-main: transparent !important;
+}
+
+.rti--input {
+    background-color: transparent !important;
+    outline: none !important;
+}
+
+.rti--tag {
+    background-color: rgb(150,150,150) !important;
+    color: white;
+}
