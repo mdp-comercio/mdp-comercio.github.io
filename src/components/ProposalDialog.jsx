@@ -7,6 +7,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import { LoginContext } from "../services/auth";
 import Select from 'react-select'
+import Spinner from "./Spinner";
  
 export default function ProposalDialog({edital, setEdital}) {
 
@@ -16,10 +17,11 @@ export default function ProposalDialog({edital, setEdital}) {
     const {getToken} = useContext(LoginContext)
     const [produtos, setProdutos] = useState([])
     const [marcas, setMarcas] = useState([])
+    const [loading, setLoading] = useState(false)
 
-    const gerarProposta = (edital) => {
+    const gerarProposta = async (edital) => {
         let url = new URL(BACKEND_URL + "/gerar_proposta")
-        fetch(url, {
+        return fetch(url, {
             method: "post",
             body: JSON.stringify(edital),
             headers: { Authorization: "Bearer " + getToken() },
@@ -50,14 +52,15 @@ export default function ProposalDialog({edital, setEdital}) {
             }
         })
         .then(response => {
-            setProdutos(response)
-            setMarcas([...new Set(response.map(product => product.marca))])
+            const products = Object.values(response)
+            setProdutos(products)
+            setMarcas([...new Set(products.map(product => product.marca))])
         })
 
     }, [])
 
     const handleConfirm = () => {
-   
+        setLoading(true)
         let selectedItems = []
         let editalCopy = {...edital}
 
@@ -65,15 +68,16 @@ export default function ProposalDialog({edital, setEdital}) {
             if (items[idx] != null) {
                 item['marca'] = items[idx]['marca']
                 item['modelo'] = items[idx]['modelo']
-                if (item['precoUnitario'] == null)
-                    item['precoUnitario'] = parseFloat(document.getElementById(idx + "_preco").value)
+                item['precoUnitario'] = parseFloat(document.getElementById(idx + "_preco").value)
                 selectedItems.push(item)
             } 
         })
         editalCopy['items'] = selectedItems
-        gerarProposta(editalCopy)
-        setEdital(null)
-        handleOpen()
+        gerarProposta(editalCopy).then(response => {
+            setLoading(false)
+            setEdital(null)
+            handleOpen()
+        })
     }
 
     const handleCancel = () => {
@@ -184,8 +188,13 @@ export default function ProposalDialog({edital, setEdital}) {
                 </DialogContent>
 
                 <DialogActions>
-                <Button variant="contained" color="error" onClick={handleCancel}>Cancelar</Button>
-                <Button variant="contained" color="success" onClick={handleConfirm}>Confirmar</Button>
+                    <Button variant="contained" color="error" onClick={handleCancel}>Cancelar</Button>
+                    <div>
+                        {loading ? 
+                            <Spinner className="w-6 h-6"/> :
+                            <Button variant="contained" color="success" onClick={handleConfirm}>Confirmar</Button>
+                        }
+                    </div>
                 </DialogActions>
 
             </Dialog>

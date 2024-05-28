@@ -37,7 +37,7 @@ const ProposalsPage = () => {
 
     // Download pdf
     const download_pdf = async (id) => {
-        setDownloading(true)
+        setDownloading(id)
         let url = new URL(BACKEND_URL + "/download")
         url.searchParams.append("id", id)
 
@@ -87,7 +87,7 @@ const ProposalsPage = () => {
                             </td>
                             <td className="flex justify-start">
                                 <DocumentIcon onClick={() => download_pdf(proposta["id"])} className="w-6 text-red-400"/>
-                                {downloading && <Spinner className="w-6 h-6 border-4"/>}
+                                {downloading == proposta["id"] && <Spinner className="w-6 h-6 border-4"/>}
                             </td>
                         </tr>
                     ))}
