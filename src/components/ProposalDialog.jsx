@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import { LoginContext } from "../services/auth";
 import Select from 'react-select'
 import Spinner from "./Spinner";
+import SmartText from "./SmartText";
  
 export default function ProposalDialog({edital, setEdital}) {
 
@@ -68,7 +69,7 @@ export default function ProposalDialog({edital, setEdital}) {
             if (items[idx] != null) {
                 item['marca'] = items[idx]['marca']
                 item['modelo'] = items[idx]['modelo']
-                item['precoUnitario'] = parseFloat(document.getElementById(idx + "_preco").value)
+                // item['precoUnitario'] = parseFloat(document.getElementById(idx + "_preco").value)
                 selectedItems.push(item)
             } 
         })
@@ -115,10 +116,10 @@ export default function ProposalDialog({edital, setEdital}) {
                                             </td>
 
                                             <td>
-                                                <p 
-                                                    dangerouslySetInnerHTML={{ __html: item['descricao'].replace("<em>", '<mark>').replace("</em>", '</mark>') }}
-                                                >    
-                                                </p>
+                                                <SmartText 
+                                                    text={item['descricao'].replace("<em>", '<mark>').replace("</em>", '</mark>')} 
+                                                    length={100}
+                                                />
                                             </td>
 
                                             <td>
