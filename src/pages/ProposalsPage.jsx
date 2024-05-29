@@ -10,7 +10,7 @@ const ProposalsPage = () => {
 
     const [propostas, setPropostas] = useState(null)
     const [downloading, setDownloading] = useState(false)
-    const {getToken} = useContext(LoginContext)
+    const {getToken, logout} = useContext(LoginContext)
 
     // Consulta as propostas criadas 
     useEffect(() => {

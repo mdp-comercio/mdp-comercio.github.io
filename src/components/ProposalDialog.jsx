@@ -14,7 +14,7 @@ export default function ProposalDialog({edital, setEdital}) {
     const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(!open);
     const [items, setItems] = useState({})
-    const {getToken} = useContext(LoginContext)
+    const {getToken, logout} = useContext(LoginContext)
     const [produtos, setProdutos] = useState([])
     const [marcas, setMarcas] = useState([])
     const [loading, setLoading] = useState(false)

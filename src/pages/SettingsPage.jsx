@@ -122,7 +122,7 @@ const ProductComponent = ({product, onChange, editable}) => {
 
 const SettingsPage = () => {
 
-    const {getToken} = useContext(LoginContext)
+    const {getToken, logout} = useContext(LoginContext)
     const [open, setOpen] = useState(false)    
     const [editFilters, setEditFilters] = useState(false)
     const [filters, setFilters] = useState(null)
@@ -137,10 +137,11 @@ const SettingsPage = () => {
             headers: { Authorization: "Bearer " + getToken() },
         })
         .then(response => {
-            if (response.status == 200) {
+            if (response.ok) {
                 return response.json()
+            } else {
+                logout()
             }
-            return null
         })
         .then(response => {
             console.log(response)
@@ -155,10 +156,11 @@ const SettingsPage = () => {
             headers: { Authorization: "Bearer " + getToken() },
         })
         .then(response => {
-            if (response.status == 200) {
+            if (response.ok) {
                 return response.json()
+            } else {
+                logout()
             }
-            return null
         })
         .then(response => {
             console.log(response)
