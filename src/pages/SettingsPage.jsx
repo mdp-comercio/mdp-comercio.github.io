@@ -136,8 +136,16 @@ const SettingsPage = () => {
             method: "GET",
             headers: { Authorization: "Bearer " + getToken() },
         })
-        .then(response => response.json())
-        .then(response => setProdutos(Object.values(response)))
+        .then(response => {
+            if (response.status == 200) {
+                return response.json()
+            }
+            return null
+        })
+        .then(response => {
+            console.log(response)
+            setProdutos(Object.values(response))
+        })
     }
 
     const getFilters = () => {
@@ -146,8 +154,16 @@ const SettingsPage = () => {
             method: "GET",
             headers: { Authorization: "Bearer " + getToken() },
         })
-        .then(response => response.json())
-        .then(response => setFilters(response))
+        .then(response => {
+            if (response.status == 200) {
+                return response.json()
+            }
+            return null
+        })
+        .then(response => {
+            console.log(response)
+            setFilters(response)
+        })
     }
 
     const saveFilters = () => {
@@ -213,8 +229,8 @@ const SettingsPage = () => {
                                     <div className="w-full"><p className="flex text-sm text-gray-800">Quantidade máxima</p></div>
                                 </div>
 
-                                {filters.map((filter, idx) => {
-                                    if (editFilters == false && idx == filters.length-1) {
+                                {filters?.map((filter, idx) => {
+                                    if (editFilters == false && idx == filters?.length-1) {
                                         return null
                                     }
                                     return (
@@ -292,7 +308,7 @@ const SettingsPage = () => {
                                 </div>
 
                                 <div className="h-full flex flex-col gap-2">
-                                    {produtos.map((product, idx) => {
+                                    {produtos?.map((product, idx) => {
                                         return (
                                             <ProductComponent 
                                                 key={product.id}

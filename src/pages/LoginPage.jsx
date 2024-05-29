@@ -19,7 +19,9 @@ const LoginPage = () => {
             body: formData
         })
         .then(response => response.json())
-        .then(data => login(data.access_token))
+        .then(data => {
+            login(data.access_token)
+        })
 
     };
 
