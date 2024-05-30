@@ -7,7 +7,6 @@ import { Sidebar } from "../components/Sidebar";
 import InputTags from "../components/InputTags";
 import { v4 as uuid } from "uuid";
 import Spinner from "../components/Spinner";
-import {PlusIcon} from "@heroicons/react/24/solid";
 
 const FilterComponent = ({filter, onChange, editable}) => {
     const [keywordsTags, setKeywordsTags] = useState(filter.keyWords)
@@ -122,7 +121,7 @@ const ProductComponent = ({product, onChange, editable}) => {
 
 const SettingsPage = () => {
 
-    const {getToken, logout} = useContext(LoginContext)
+    const {getToken, logo} = useContext(LoginContext)
     const [open, setOpen] = useState(false)    
     const [editFilters, setEditFilters] = useState(false)
     const [filters, setFilters] = useState(null)

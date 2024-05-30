@@ -10,8 +10,8 @@ const InputSelect = ({value, setValue, options}) => (
       onChange={(e) => setValue(e.target.value)}
       fullWidth={true}
     > 
-      {options.map(option => (
-        <MenuItem value={option.value}>{option.label}</MenuItem>
+      {options.map((option, idx) => (
+        <MenuItem key={idx} value={option.value}>{option.label}</MenuItem>
       ))}
     </Select>
   </FormControl>

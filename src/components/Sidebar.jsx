@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { InboxIcon, DocumentTextIcon, TrophyIcon, Cog6ToothIcon } from '@heroicons/react/24/outline';
+import { InboxIcon, DocumentTextIcon, Cog6ToothIcon } from '@heroicons/react/24/outline';
 import Logo from "../assets/logo.png";
 import { Link, useLocation } from 'react-router-dom';
 import {Bars3Icon} from '@heroicons/react/24/outline';
@@ -34,8 +34,8 @@ export function Sidebar({children}) {
       <hr className='m-2'></hr>
 
       <div className='flex flex-col text-md hover:bg-blue'>
-        <Item text="Effecti" Icon={InboxIcon} to="/effecti"/>
         <Item text="PNCP" Icon={InboxIcon} to="/pncp"/>
+        <Item text="Effecti" Icon={InboxIcon} to="/effecti"/>
         <Item text="Propostas" Icon={DocumentTextIcon} to="/propostas"/>
         <Item text="Configurações" Icon={Cog6ToothIcon} to="/configuracoes"/>
       </div>
@@ -66,8 +66,8 @@ export function Sidebar({children}) {
         </div> 
 
         <div className='flex flex-col text-md hover:bg-blue mt-5'>
-          <Item text="Effecti" Icon={InboxIcon} to="/effecti"/>
           <Item text="PNCP" Icon={InboxIcon} to="/pncp"/>
+          <Item text="Effecti" Icon={InboxIcon} to="/effecti"/>
           <Item text="Propostas" Icon={DocumentTextIcon} to="/propostas"/>
           <Item text="Configurações" Icon={Cog6ToothIcon} to="/configuracoes"/>
         </div>

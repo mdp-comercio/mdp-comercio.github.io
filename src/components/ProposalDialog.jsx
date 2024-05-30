@@ -69,7 +69,12 @@ export default function ProposalDialog({edital, setEdital}) {
             if (items[idx] != null) {
                 item['marca'] = items[idx]['marca']
                 item['modelo'] = items[idx]['modelo']
-                // item['precoUnitario'] = parseFloat(document.getElementById(idx + "_preco").value)
+                item['descricao'] = produtos.find(produto => (
+                    produto.marca == items[idx]['marca'] &&
+                    produto.modelo == items[idx]['modelo']
+                )).descricao
+                if (item['precoUnitario'] == null || item['precoUnitario'] == 0) 
+                    item['precoUnitario'] = parseFloat(document.getElementById(idx + "_preco").value)
                 selectedItems.push(item)
             } 
         })
@@ -95,7 +100,7 @@ export default function ProposalDialog({edital, setEdital}) {
                 <DialogContent >
                     {edital && 
                         <div className="max-h-[50vh] overflow-y-auto">
-                            <table class="table-auto">
+                            <table className="table-auto">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -107,18 +112,20 @@ export default function ProposalDialog({edital, setEdital}) {
                                 <tbody className="">
                                     {edital["items"].map((item, idx) => (
                                         <tr 
-                                            id={idx} 
+                                            key={idx} 
                                             className={items[idx] ? "bg-green-100 hover:bg-green-200" : ""}
                                         >
 
-                                            <td onClick={e => setItems(prev => ({...prev, [idx]: prev[idx] ? undefined : {}}))}>
+                                            <td 
+                                                className="shadow bg-[var(--primary-opacity-80)] hover:bg-[var(--primary)] cursor-pointer"
+                                                onClick={e => setItems(prev => ({...prev, [idx]: prev[idx] ? undefined : {}}))}>
                                                 {item['id']}
                                             </td>
 
                                             <td>
                                                 <SmartText 
                                                     text={item['descricao'].replace("<em>", '<mark>').replace("</em>", '</mark>')} 
-                                                    length={100}
+                                                    length={50}
                                                 />
                                             </td>
 

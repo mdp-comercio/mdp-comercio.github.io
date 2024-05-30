@@ -121,7 +121,7 @@ const PncpPage = () => {
         </Sidebar>
 
         <div className="w-full bg-gray-100 px-5 py-10 xs:px-10">
-            {filteredEditais.length == 0 ? <Spinner/> :
+            {filteredEditais.length == 0 ? <div className="w-full h-screen"><Spinner/></div> :
             <EditaisList editais={filteredEditais}/>}
         </div>
         

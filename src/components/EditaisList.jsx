@@ -49,9 +49,9 @@ const EditaisList = ({editais}) => {
                             <p> <strong>Pregão:</strong> {edital['pregao']} </p>
                             <p> <strong>UASG:</strong> {edital['uasg']} </p>
                             
-                            <p> <strong>Data Inicial:</strong> {new Date(edital['dataInicial']*1000).toLocaleString()} </p>
-                            <p> <strong>Data Final:</strong> {new Date(edital['dataFinal']*1000).toLocaleString()} </p>
-                            <p> <strong>Data Publicação:</strong> {new Date(edital['dataPublicacao']*1000).toLocaleString()} </p>
+                            <p> <strong>Data Inicial:</strong> {new Date(edital['dataInicial']*1000).toLocaleString('pt-br')} </p>
+                            <p> <strong>Data Final:</strong> {new Date(edital['dataFinal']*1000).toLocaleString('pt-br')} </p>
+                            <p> <strong>Data Publicação:</strong> {new Date(edital['dataPublicacao']*1000).toLocaleString('pt-br')} </p>
                             <p> <strong>Modalidade:</strong> {edital['modalidade']} </p>
                         </div>
                         
@@ -61,7 +61,7 @@ const EditaisList = ({editais}) => {
                             </div>
 
                             <div className="overflow-x-auto">
-                                <table class="table-auto">
+                                <table className="table-auto">
                                     <thead>
                                         <tr>
                                             <th></th>
@@ -72,8 +72,8 @@ const EditaisList = ({editais}) => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {edital["items"].map(item => (
-                                            <tr className={item['highlight'] ? "bg-orange-100" : ""}>
+                                        {edital["items"].map((item, idx) => (
+                                            <tr key={idx} className={item['highlight'] ? "bg-orange-100" : ""}>
                                                 <td>{item['id']}</td>
                                                 <td>
                                                     <SmartText text={item['descricao']} length={100}/>

@@ -63,7 +63,7 @@ const ProposalsPage = () => {
         <Sidebar></Sidebar>
 
         <div className="flex flex-col w-full bg-gray-100 p-5 overflow-x-auto">
-            {!propostas?.length ? <Spinner/> :
+            {!propostas?.length ? <div className="w-full h-screen"><Spinner/></div> :
             <table className="table-auto bg-white ">
                 <thead>
                     <tr className="">
@@ -75,8 +75,8 @@ const ProposalsPage = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {propostas?.map(proposta => (
-                        <tr className="text-sm">
+                    {propostas?.map((proposta, idx) => (
+                        <tr key={idx} className="text-sm">
                             <td>{dayjs(proposta["dataProposta"]*1000).format("DD/MM/YYYY")}</td>
                             <td>{proposta["orgao"]}</td>
                             <td>{proposta["pregao"]}</td>

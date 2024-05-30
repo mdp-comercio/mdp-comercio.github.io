@@ -15,7 +15,7 @@ const LoginProvider = (props) => {
   const getName = () => localStorage.getItem(NAME_KEY);
   const login = (token) => {
     localStorage.setItem(TOKEN_KEY, token);
-    navigate("/effecti");
+    navigate("/pncp");
   };
   const logout = () => {
     localStorage.removeItem(TOKEN_KEY);
