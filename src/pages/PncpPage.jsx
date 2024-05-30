@@ -8,15 +8,22 @@ import { LoginContext } from "../services/auth";
 import { Sidebar } from "../components/Sidebar";
 import dayjs from "dayjs";
 import Spinner from "../components/Spinner";
+import { useSearchParams } from "react-router-dom";
 
 const PncpPage = () => {
 
+    const [searchParams, setSearchParams] = useSearchParams()
     const [editais, setEditais] = useState([])
     const [filteredEditais, setFilteredEditais] = useState([])
-    const [date, setDate] = useState(dayjs())
+    const [date, setDate] = useState()
     const {getToken, logout} = useContext(LoginContext)
     const [portal, setPortal] = useState("Todos")
     const [search, setSearch] = useState("")
+
+    useEffect(() => {
+        const date = searchParams.get('dataPublicacao')
+        setDate(date ? dayjs(date, 'DD-MM-YYYY') : dayjs())
+    }, [])
 
     // Memo to update portal options when editais is updated
     const portaisOptions = useMemo(() => {
@@ -30,7 +37,7 @@ const PncpPage = () => {
 
     // Consulta os avisos recebidos pelo PNCP
     useEffect(() => {
-        
+        if (date == null) return
         let url = new URL(BACKEND_URL + "/avisos_pncp")
         url.searchParams.append("dia", date.date())
         url.searchParams.append("mes", date.month()+1)
